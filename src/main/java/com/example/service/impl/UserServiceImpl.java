@@ -1,4 +1,5 @@
 package com.example.service.impl;
+import com.example.config.DataSourceAnnotation;
 import com.example.domain.User;
 import com.example.mapper.UserMapper;
 import com.example.domain.UserXtp;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserList();
     }
 
-
+    @DataSourceAnnotation(value="xtp")
     @Override
     public List<UserXtp> getUserListXtp() {
         return userMapper.getUserXtpList();

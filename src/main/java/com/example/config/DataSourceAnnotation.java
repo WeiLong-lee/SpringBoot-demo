@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 数据库注解驱动
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD})
 public @interface DataSourceAnnotation {
 
     String value();

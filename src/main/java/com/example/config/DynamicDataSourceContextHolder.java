@@ -23,7 +23,7 @@ public class DynamicDataSourceContextHolder {
     public static List<String> dataSourceIds = new ArrayList<String>();
 
 
-    public static void setDataSource(String sourceType) {
+    public static void setDataSourceType(String sourceType) {
         if(StringUtils.isBlank(sourceType)){
                log.error("参数sourceType为null或空");
         }
@@ -34,9 +34,9 @@ public class DynamicDataSourceContextHolder {
      * 获取数据源
      * @return
      */
-    public static String getDataSource(){return dataSource.get();}
+    public static String getDataSourceType(){return dataSource.get();}
 
-    public static void clearDataSource(){ dataSource.remove();}
+    public static void clearDataSourceType(){ dataSource.remove();}
 
     /***
      * 判断指定DataSource 是否存在
