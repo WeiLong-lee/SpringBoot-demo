@@ -10,12 +10,8 @@ import java.lang.annotation.Target;
  * 数据库注解驱动
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD,ElementType.TYPE})
 public @interface DataSourceAnnotation {
 
-    String name() default DataSourceAnnotation.dataSourceTale;
-
-    public static String dataSourceTale = "dataSourceTale";
-
-    public static String dataSourceXtp = "dataSourceXtp";
+    String value();
 }
