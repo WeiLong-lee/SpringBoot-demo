@@ -34,10 +34,9 @@ public class UserServiceTest {
     @Test
     public void testSelect() throws Exception{
       List<UserXtp> userXtpList =  userService.getUserListXtp();
-      //List<User> userList =userService.getUserListTale();
-
         System.out.println(userXtpList);
-        //System.out.println(userList);
+      List<User> userList =userService.getUserListTale();
+        System.out.println(userList);
     }
 
 

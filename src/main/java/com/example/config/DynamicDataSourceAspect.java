@@ -28,7 +28,6 @@ public class DynamicDataSourceAspect {
 
     @Before("@annotation(dataSourceAnnotation)")
     public void changeDataSource(JoinPoint point, DataSourceAnnotation dataSourceAnnotation) throws Throwable {
-
         //获取当前的指定的数据源;
         String dsId = dataSourceAnnotation.value();
         //如果不在我们注入的所有的数据源范围之内，那么输出警告信息，系统自动使用默认的数据源。
@@ -41,11 +40,14 @@ public class DynamicDataSourceAspect {
         }
     }
 
-
-
+    /***
+     *  销毁数据源信息
+     * @param point
+     * @param dataSourceAnnotation
+     */
     @After("@annotation(dataSourceAnnotation)")
     public void restoreDataSource(JoinPoint point, DataSourceAnnotation dataSourceAnnotation) {
-        System.out.println("Revert DataSource : {} > {}"+dataSourceAnnotation.value()+point.getSignature());
+        log.info("Revert DataSource : {} -->Method {}",dataSourceAnnotation.value(),point.getSignature());
         //方法执行完毕之后，销毁当前数据源信息，进行垃圾回收。
         DynamicDataSourceContextHolder.clearDataSourceType();
     }
