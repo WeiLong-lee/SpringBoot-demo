@@ -5,6 +5,7 @@ package com.example.service;
 import com.example.SpringBootDemoApplication;
 import com.example.domain.User;
 import com.example.domain.UserXtp;
+import com.example.util.RedisUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +37,16 @@ public class UserServiceTest {
       List<UserXtp> userXtpList =  userService.getUserListXtp();
         System.out.println(userXtpList);
       List<User> userList =userService.getUserListTale();
+      System.out.println(userList);
+    }
+
+    @Test
+    public void testRedis() throws Exception {
+        List<User> userList =userService.getUserListTale();
         System.out.println(userList);
+        String result = RedisUtil.setValue("userList",userList);
+        System.out.println("保存结果："+result);
+
     }
 
 

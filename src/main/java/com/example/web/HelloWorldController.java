@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HelloWorldController {
 
+    @RequestMapping("")
+    public String hello() throws Exception{
+        throw new Exception("出现系统异常!!!");
+    }
     @ApiOperation(value="首页",notes="跳转到首页")
     @RequestMapping(value = "/index" ,method = RequestMethod.GET)
     public String index(){
