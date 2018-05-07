@@ -1,20 +1,24 @@
 package com.example.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Service;
+
+import javax.swing.*;
 
 /**
  * Created by LiWeilong on 2018/4/20.
+ * redis 工具类
  */
 public class RedisUtil {
 
-    @Autowired
-    private static StringRedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate = SpringUtil.getBean(RedisTemplate.class);
 
-    public static String setValue(String str,Object obj){
-        if(!redisTemplate.hasKey(str)){
-              redisTemplate.opsForValue().append(str,obj.toString());
+    private static StringRedisTemplate stringRedisTemplate = (StringRedisTemplate) SpringUtil.getBean("stringRedisTemplate");
+
+
+    public static String setValue(String str,String value){
+        if(!stringRedisTemplate.hasKey(str)){
+            stringRedisTemplate.opsForValue().set(str,value);
               return "使用redis缓存保存数据成功";
         }else{
             return "key已存在";
@@ -22,9 +26,9 @@ public class RedisUtil {
     }
 
     public static String getValue(String key){
-        if(!redisTemplate.hasKey(key)){
+        if(!stringRedisTemplate.hasKey(key)){
             return "key 不存在";
         }
-        return redisTemplate.opsForValue().get(key);
+        return String.valueOf(stringRedisTemplate.opsForValue().get(key));
     }
 }

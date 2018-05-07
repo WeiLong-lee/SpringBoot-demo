@@ -44,8 +44,6 @@ public class UserServiceTest {
     public void testRedis() throws Exception {
         List<User> userList =userService.getUserListTale();
         System.out.println(userList);
-        String result = RedisUtil.setValue("userList",userList);
-        System.out.println("保存结果："+result);
 
     }
 
