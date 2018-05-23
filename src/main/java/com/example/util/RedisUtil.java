@@ -18,7 +18,7 @@ public class RedisUtil {
 
     public static String setValue(String str,String value){
         if(!stringRedisTemplate.hasKey(str)){
-            stringRedisTemplate.opsForValue().set(str,value);
+              stringRedisTemplate.opsForValue().set(str,value);
               return "使用redis缓存保存数据成功";
         }else{
             return "key已存在";
